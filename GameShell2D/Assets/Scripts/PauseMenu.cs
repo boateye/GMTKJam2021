@@ -7,53 +7,53 @@ public class PauseMenu : MonoBehaviour
 {
 
     public static bool gameIsPaused = false;
+    public static bool quitPrompt = false;
 
     InputController controls;
     
 
     public GameObject pauseMenuUI;
+    public GameObject quitPromptUI;
 
     private void Awake()
     {
         controls = new InputController();
-
         
-
         controls.Gameplay.Pause.performed += ctx => Escape();
-
-
-       controls.Gameplay.Why.started += ctx => Escape1();
-        controls.Gameplay.Why.performed += ctx => Escape2();
-        controls.Gameplay.Why.canceled += ctx => Escape3();
-    }
-    
-    void Escape1()
-    {
-        print("Start");
     }
 
-    void Escape2()
+    private void OnEnable()
     {
-        print("Performed");
+        controls.Gameplay.Enable();
     }
 
-    void Escape3()
+    private void OnDisable()
     {
-        print("Cancelled");
+        controls.Gameplay.Disable();
     }
 
     private void Escape()
     {
-        if (gameIsPaused)
+        if (quitPrompt)
         {
-            Resume();
+            quitPrompt = false;
+            pauseMenuUI.SetActive(true);
+            quitPromptUI.SetActive(false);
         }
         else
         {
-            Pause();
+            if (gameIsPaused)
+            {
+                Resume();
+            }
+            else
+            {
+                Pause();
+            }
         }
     }
 
+    //be careful with these, Time.timescale is static it continutes to other scenes
     public void Resume()
     {
         pauseMenuUI.SetActive(false);
@@ -68,8 +68,36 @@ public class PauseMenu : MonoBehaviour
         gameIsPaused = true;
     }
 
+    public void Outro()
+    {
+        Time.timeScale = 1;
+        SceneChanger.NextScene();
+    }
+
+    public void MainMenu()
+    {
+        //This method is only used by a button in the pause menu,
+        //so we have to make sure we resume the time scale.
+        Time.timeScale = 1;
+        SceneChanger.ChangeScene(0);
+    }
+
     public void Quit()
     {
+        quitPrompt = true;
+        pauseMenuUI.SetActive(false);
+        quitPromptUI.SetActive(true);
+    }
+
+    public void QuitYes()
+    {
         Application.Quit();
+    }
+
+    public void QuitNo()
+    {
+        quitPrompt = false;
+        pauseMenuUI.SetActive(true);
+        quitPromptUI.SetActive(false);
     }
 }

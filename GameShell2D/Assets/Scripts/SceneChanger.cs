@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneChanger : MonoBehaviour
+public class SceneChanger
 {
-    public void ChangeScene(string sceneName)
+    public static void ChangeScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
     }
 
-    public void ChangeScene(int sceneBuildID)
+    public static void ChangeScene(int sceneBuildID)
     {
         SceneManager.LoadScene(sceneBuildID);
     }
 
-    public void NextScene()
+    public static void NextScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
