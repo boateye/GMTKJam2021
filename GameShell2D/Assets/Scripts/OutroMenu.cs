@@ -4,8 +4,16 @@ using UnityEngine;
 
 public class OutroMenu : MonoBehaviour
 {
+    public GameObject _sceneChanger;
+    private SceneChanger sceneChanger;
+
+    private void Awake()
+    {
+        sceneChanger = _sceneChanger.GetComponent<SceneChanger>();
+    }
+
     public void Restart()
     {
-        SceneChanger.ChangeScene(0);
+        sceneChanger.ChangeScene(0);
     }
 }

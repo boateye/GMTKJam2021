@@ -5,18 +5,21 @@ using UnityEngine.InputSystem;
 
 public class PauseMenu : MonoBehaviour
 {
+    public GameObject _sceneChanger;
+    private SceneChanger sceneChanger;
 
     public static bool gameIsPaused = false;
     public static bool quitPrompt = false;
 
     InputController controls;
     
-
     public GameObject pauseMenuUI;
     public GameObject quitPromptUI;
 
     private void Awake()
     {
+        sceneChanger = _sceneChanger.GetComponent<SceneChanger>();
+
         controls = new InputController();
         
         controls.Gameplay.Pause.performed += ctx => Escape();
@@ -71,7 +74,7 @@ public class PauseMenu : MonoBehaviour
     public void Outro()
     {
         Time.timeScale = 1;
-        SceneChanger.NextScene();
+        sceneChanger.NextScene();
     }
 
     public void MainMenu()
@@ -79,7 +82,7 @@ public class PauseMenu : MonoBehaviour
         //This method is only used by a button in the pause menu,
         //so we have to make sure we resume the time scale.
         Time.timeScale = 1;
-        SceneChanger.ChangeScene(0);
+        sceneChanger.ChangeScene(0);
     }
 
     public void Quit()

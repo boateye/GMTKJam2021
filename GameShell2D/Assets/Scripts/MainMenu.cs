@@ -5,15 +5,19 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    Animator transitionImage;
-    float transitionTime = 1f;
+    public GameObject _sceneChanger;
+    private SceneChanger sceneChanger;
+
+    public Animator transitionImage;
+    public float transitionTime = 1f;
+
+    private void Awake()
+    {
+        sceneChanger = _sceneChanger.GetComponent<SceneChanger>();
+    }
+
     public void StartGame()
     {
-        SceneChanger.NextScene(/*transitionImage, transitionTime*/);
-
-        // Attempting to call the corouting here since it wasn't working in the SceneChanger script due to NextScene() being static
-        //SceneChanger sc = new SceneChanger();
-        //StartCoroutine(sc.SceneTransition(SceneManager.GetActiveScene().buildIndex + 1, transitionImage, transitionTime));
-
+        sceneChanger.NextScene(transitionImage, transitionTime);
     }
 }
