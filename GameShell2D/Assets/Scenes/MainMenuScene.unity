@@ -287,12 +287,12 @@ GameObject:
   - component: {fileID: 1131422253}
   - component: {fileID: 1131422252}
   m_Layer: 5
-  m_Name: Image
+  m_Name: TransitionImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1131422251
 RectTransform:
   m_ObjectHideFlags: 0
@@ -650,8 +650,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sceneChanger: {fileID: 1335425975}
-  transitionImage: {fileID: 1131422252}
-  transitionTime: 1
+  _transitionImage: {fileID: 1131422252}
+  _transitionTime: 1
 --- !u!1 &1335425975 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5953337971214085417, guid: c05bc63b21432514daef116b72b9aaca,

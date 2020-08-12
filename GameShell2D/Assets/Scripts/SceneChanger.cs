@@ -5,16 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class SceneChanger : MonoBehaviour
 {
-
+    // Overload ChangeScene to allow for usage of scene name or buildID
     public void ChangeScene(string sceneName, Animator transitionImage, float transitionTime)
     {
         StartCoroutine(SceneTransition(sceneName, transitionImage, transitionTime));
     }
 
-    public void ChangeScene(int sceneBuildID)
+    public void ChangeScene(int sceneBuildID, Animator transitionImage, float transitionTime)
     {
-        SceneManager.LoadScene(sceneBuildID);
+        StartCoroutine(SceneTransition(sceneBuildID, transitionImage, transitionTime));
     }
+    
     // Overload NextScene() to allow for a version w/ a transition.
     public void NextScene()
     {
@@ -27,6 +28,7 @@ public class SceneChanger : MonoBehaviour
         StartCoroutine(SceneTransition(SceneManager.GetActiveScene().buildIndex + 1, transitionImage, transitionTime));
     }
     
+    // Coroutines to control the transition Animations.
     IEnumerator SceneTransition(int sceneBuildID, Animator transitionImage, float transitionTime)
     {
         // Play animation
@@ -39,7 +41,7 @@ public class SceneChanger : MonoBehaviour
         SceneManager.LoadScene(sceneBuildID);
     }
 
-    IEnumerator SceneTransition(string sceneBuildID, Animator transitionImage, float transitionTime)
+    IEnumerator SceneTransition(string sceneName, Animator transitionImage, float transitionTime)
     {
         // Play animation
         transitionImage.SetTrigger("Start");
@@ -48,6 +50,6 @@ public class SceneChanger : MonoBehaviour
         yield return new WaitForSeconds(transitionTime);
 
         // Load Scene
-        SceneManager.LoadScene(sceneBuildID);
+        SceneManager.LoadScene(sceneName);
     }
 }

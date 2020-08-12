@@ -7,13 +7,18 @@ public class OutroMenu : MonoBehaviour
     public GameObject _sceneChanger;
     private SceneChanger sceneChanger;
 
+    public Animator _transitionImage;
+    public float _transitionTime = 1f;
+
     private void Awake()
     {
         sceneChanger = _sceneChanger.GetComponent<SceneChanger>();
+
+        _transitionImage.gameObject.SetActive(true);
     }
 
     public void Restart()
     {
-        sceneChanger.ChangeScene(0);
+        sceneChanger.ChangeScene(0, _transitionImage, _transitionTime);
     }
 }

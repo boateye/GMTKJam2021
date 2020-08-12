@@ -8,6 +8,9 @@ public class PauseMenu : MonoBehaviour
     public GameObject _sceneChanger;
     private SceneChanger sceneChanger;
 
+    public Animator _transitionImage;
+    public float _transitionTime = 1f;
+
     public static bool gameIsPaused = false;
     public static bool quitPrompt = false;
 
@@ -23,6 +26,8 @@ public class PauseMenu : MonoBehaviour
         controls = new InputController();
         
         controls.Gameplay.Pause.performed += ctx => Escape();
+
+        _transitionImage.gameObject.SetActive(true);
     }
 
     private void OnEnable()
@@ -74,7 +79,7 @@ public class PauseMenu : MonoBehaviour
     public void Outro()
     {
         Time.timeScale = 1;
-        sceneChanger.NextScene();
+        sceneChanger.NextScene(_transitionImage, _transitionTime);
     }
 
     public void MainMenu()
@@ -82,7 +87,7 @@ public class PauseMenu : MonoBehaviour
         //This method is only used by a button in the pause menu,
         //so we have to make sure we resume the time scale.
         Time.timeScale = 1;
-        sceneChanger.ChangeScene(0);
+        sceneChanger.ChangeScene(0, _transitionImage, _transitionTime);
     }
 
     public void Quit()
