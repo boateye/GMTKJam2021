@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -16,8 +17,8 @@ public class PauseMenu : MonoBehaviour
 
     InputController controls;
     
-    public GameObject pauseMenuUI;
-    public GameObject quitPromptUI;
+    public GameObject pauseMenuUI, pauseFirstButton;
+    public GameObject quitPromptUI, quitOpenFirstButton, quitCloseFirstButton;
 
     private void Awake()
     {

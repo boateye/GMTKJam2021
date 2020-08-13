@@ -525,7 +525,10 @@ MonoBehaviour:
   _transitionImage: {fileID: 2026933110}
   _transitionTime: 1
   pauseMenuUI: {fileID: 1288136569}
+  pauseFirstButton: {fileID: 1566074082}
   quitPromptUI: {fileID: 2089914132}
+  quitOpenFirstButton: {fileID: 1092862808}
+  quitCloseFirstButton: {fileID: 1878450106}
 --- !u!1 &324517303
 GameObject:
   m_ObjectHideFlags: 0
@@ -755,7 +758,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
+  m_FirstSelected: {fileID: 1566074082}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &563992806
@@ -1093,7 +1096,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1288136570
 RectTransform:
   m_ObjectHideFlags: 0
