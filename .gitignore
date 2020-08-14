@@ -70,3 +70,7 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 GameShell2D/Library/Artifacts/
+GameShell2D/Library/ArtifactDB
+GameShell2D/Library/ArtifactDB-lock
+GameShell2D/Library/SourceAssetDB
+GameShell2D/Library/SourceAssetDB-lock
