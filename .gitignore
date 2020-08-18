@@ -4,8 +4,8 @@
 #
 #
 # Exceptions
-#!ExportedPackages\TestPackage.unitypackage
-#
+!ExportedPackages\TestPackage.unitypackage
+
 # High Level Folders
 /[Ll]ibrary/
 /[Tt]emp/
