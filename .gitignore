@@ -2,6 +2,11 @@
 #
 # Get latest from https://github.com/github/gitignore/blob/master/Unity.gitignore
 #
+#
+# Exceptions
+#!TestPackage.unitypackage
+#
+# High Level Folders
 /[Ll]ibrary/
 /[Tt]emp/
 /[Oo]bj/
