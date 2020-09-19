@@ -15,11 +15,11 @@ public class SceneChanger : MonoBehaviour
     {
         StartCoroutine(SceneTransition(sceneBuildID, transitionImage, transitionTime));
     }
-    
+
     // Overload NextScene() to allow for a version w/ a transition.
     public void NextScene()
     {
-        
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
@@ -27,7 +27,12 @@ public class SceneChanger : MonoBehaviour
     {
         StartCoroutine(SceneTransition(SceneManager.GetActiveScene().buildIndex + 1, transitionImage, transitionTime));
     }
-    
+
+    public void ReloadScene(Animator transitionImage, float transitionTime)
+    {
+        StartCoroutine(SceneTransition(SceneManager.GetActiveScene().buildIndex, transitionImage, transitionTime));
+    }
+
     // Coroutines to control the transition Animations.
     IEnumerator SceneTransition(int sceneBuildID, Animator transitionImage, float transitionTime)
     {
