@@ -49,6 +49,14 @@ public class @InputController : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""BButton"",
+                    ""type"": ""Button"",
+                    ""id"": ""5dc52442-f293-41da-bca7-da2236f59a5d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -95,6 +103,17 @@ public class @InputController : IInputActionCollection, IDisposable
                     ""action"": ""AButton"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1d7bc20e-b9d8-48a2-8227-2698c176ab3f"",
+                    ""path"": ""<XInputController>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""BButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -107,6 +126,7 @@ public class @InputController : IInputActionCollection, IDisposable
         m_Gameplay_Pause = m_Gameplay.FindAction("Pause", throwIfNotFound: true);
         m_Gameplay_Why = m_Gameplay.FindAction("Why", throwIfNotFound: true);
         m_Gameplay_AButton = m_Gameplay.FindAction("AButton", throwIfNotFound: true);
+        m_Gameplay_BButton = m_Gameplay.FindAction("BButton", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -160,6 +180,7 @@ public class @InputController : IInputActionCollection, IDisposable
     private readonly InputAction m_Gameplay_Pause;
     private readonly InputAction m_Gameplay_Why;
     private readonly InputAction m_Gameplay_AButton;
+    private readonly InputAction m_Gameplay_BButton;
     public struct GameplayActions
     {
         private @InputController m_Wrapper;
@@ -168,6 +189,7 @@ public class @InputController : IInputActionCollection, IDisposable
         public InputAction @Pause => m_Wrapper.m_Gameplay_Pause;
         public InputAction @Why => m_Wrapper.m_Gameplay_Why;
         public InputAction @AButton => m_Wrapper.m_Gameplay_AButton;
+        public InputAction @BButton => m_Wrapper.m_Gameplay_BButton;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -189,6 +211,9 @@ public class @InputController : IInputActionCollection, IDisposable
                 @AButton.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnAButton;
                 @AButton.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnAButton;
                 @AButton.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnAButton;
+                @BButton.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnBButton;
+                @BButton.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnBButton;
+                @BButton.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnBButton;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -205,6 +230,9 @@ public class @InputController : IInputActionCollection, IDisposable
                 @AButton.started += instance.OnAButton;
                 @AButton.performed += instance.OnAButton;
                 @AButton.canceled += instance.OnAButton;
+                @BButton.started += instance.OnBButton;
+                @BButton.performed += instance.OnBButton;
+                @BButton.canceled += instance.OnBButton;
             }
         }
     }
@@ -215,5 +243,6 @@ public class @InputController : IInputActionCollection, IDisposable
         void OnPause(InputAction.CallbackContext context);
         void OnWhy(InputAction.CallbackContext context);
         void OnAButton(InputAction.CallbackContext context);
+        void OnBButton(InputAction.CallbackContext context);
     }
 }
